@@ -24,7 +24,8 @@ public class SnakeNLadder {
 		
 		int playerPosition = START_POSITION;
 	
-		while (playerPosition <= FINAL_POSITION) {
+		while (playerPosition < FINAL_POSITION) {
+			System.out.println();
 			diceCount++;
 			
 			int roll = diceRoll();
@@ -35,21 +36,24 @@ public class SnakeNLadder {
 			case IS_SNAKE :
 				System.out.println("Snake");
 				playerPosition -= roll;
-				if(playerPosition < START_POSITION) 
+				if(playerPosition < START_POSITION) {
 					playerPosition = START_POSITION;
-				System.out.println("Player position : " + playerPosition);
+					System.out.println("!!!! Player position getting less than " + START_POSITION + " !!!!");
+					}
 				break;
 			case IS_LADDER :
 				System.out.println("Ladder");
 				playerPosition += roll;
-				System.out.println("Player position : " + playerPosition);
+				if(playerPosition > FINAL_POSITION) {
+					playerPosition -= roll;
+				System.out.println("!!!!Player position getting more than " + FINAL_POSITION + " !!!!");
+				}
 				break;
 			default:
 				System.out.println("No play");
 				System.out.println("Player position : " + playerPosition);
-			}	
-		}
-		System.out.print("Total Dice count : " + diceCount);
+			}		
+		}	
 		System.out.println("Finally Player position : " + playerPosition);	
 	}
 }
